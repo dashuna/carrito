@@ -1,0 +1,49 @@
+img {
+    width: 100px;
+    height: 100px;
+}
+.articulos {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    padding: 30px;
+    width: 700px;
+}
+.fila {
+    display: flex;
+    align-items: flex-start;
+    padding: 10px;
+    border: double lightslategray;
+}
+.cantidad {
+    margin: 5px 15px;
+    width: 35px
+}
+.descripcion {
+    margin: 5px 15px;
+}
+.nombre {
+    margin: 15px 15px 15px 15px;
+}
+.detalles {
+    width: 500px;
+}
+.total {
+    text-align: right;
+    padding: 20px;
+}
+.subtotal {
+    margin: 10px;
+}
+.terminar {
+    text-align: right;
+}
+.inputTerminar {
+    padding: 10px;
+    background-color: lightgray;
+    border-radius: 5px;
+    font-weight: bold;
+}
+.precio {
+    text-align: right;
+}
