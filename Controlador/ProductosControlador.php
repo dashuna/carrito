@@ -4,6 +4,7 @@ require_once "Modelo/CarritoModelo.php";
 
 $productosModelo = new ProductosModelo();
 $carritoModelo = new CarritoModelo();
+session_start();
 
 if (isset($_POST['insertar'])) {
     if (empty($_POST['idMarca'])
@@ -36,21 +37,22 @@ if (isset($_POST['insertar'])) {
 //$rol = isset($_SESSION["rol"]) ? $_SESSION["rol"] : -1;
     $rol = $_SESSION["rol"] ?? -1;
 
-    if ($rol == "1") {
-
+    if ($rol == "1") { //administrador
         $marcas = $productosModelo -> obtenerListaMarcas();
         $categorias = $productosModelo -> obtenerListaCategorias();
 
         require "Vista/productosAdmin.php";
 
-    } else {
+    } else { //usuario
         if (isset($_SESSION["id"])) {
             $idUsuario = $_SESSION["id"];
             $idProductosCarrito = $carritoModelo -> getIdsProductosCarrito($idUsuario);
-        } else {
-            $idProductosCarrito = [];
-        }
+            $usuarioLogeado = true;
 
+        } else { //cualquiera
+            $idProductosCarrito = [];
+            $usuarioLogeado = false;
+        }
 
         $productos = $productosModelo -> getProductos();
         require "Vista/productosUser.php";

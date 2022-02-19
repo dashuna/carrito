@@ -39,7 +39,7 @@
 <div class="principal">
     <?php foreach ($productos as $registro) {
         if (!in_array($registro["id"], $idProductosCarrito)) { ?>
-    <div class="articulo">
+    <div class="articulo" id="articulo_<?php echo $registro["id"] ?>">
         <div>
             <img id="imagen" src="Vista/imagenes/<?php echo $registro["imagen"] ?>" alt="<?php echo $registro["imagen"] ?>">
         </div>
@@ -74,9 +74,21 @@
                     data: datos,
                     url: url,
                     type: "POST",
-                    success: function () {
+                    beforeSend: function () {
+                        <?php
+                        if ($usuarioLogeado) {
+                            echo "return true;";
+                        } else {
+                            echo "alert('Debes iniciar sesion para añadir un producto');";
+                            echo "$(location).prop('href', './Controlador/UsuarioControlador.php');";
+                        }
+                        ?>
+                    },
+                    success: function (response) {
                         console.log("Se ha realizado");
                         alert("El producto se ha añadido al carrito!");
+                        //se tiene que borrar cuando ya este en el carrito
+                        $("#articulo_"+ response).remove();
                     },
                     error: function () {
                         console.log("Error");

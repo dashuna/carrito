@@ -1,14 +1,14 @@
 <?php
-    include "Modelo/UsuarioModelo.php";
+    include "../Modelo/UsuarioModelo.php";
 
     if (isset($_POST["entrar"])) {
         login();
-        header("location: index.php");
+        header("location: ../");
     }
     if (isset($_POST["registro"])) {
-        require "Vista/registro.php";
+        require "../Vista/registro.php";
     } else {
-        require "Vista/login.php";
+        require "../Vista/login.php";
     }
 
     if (isset($_POST["registrarse"])) {
