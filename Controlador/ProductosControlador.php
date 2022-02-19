@@ -33,17 +33,26 @@ if (isset($_POST['insertar'])) {
 
 //var_dump($_SESSION);
 
-    $rol = $_SESSION["rol"];
+//$rol = isset($_SESSION["rol"]) ? $_SESSION["rol"] : -1;
+    $rol = $_SESSION["rol"] ?? -1;
+
     if ($rol == "1") {
 
         $marcas = $productosModelo -> obtenerListaMarcas();
         $categorias = $productosModelo -> obtenerListaCategorias();
 
         require "Vista/productosAdmin.php";
+
     } else {
-        $idUsuario = $_SESSION["id"];
+        if (isset($_SESSION["id"])) {
+            $idUsuario = $_SESSION["id"];
+            $idProductosCarrito = $carritoModelo -> getIdsProductosCarrito($idUsuario);
+        } else {
+            $idProductosCarrito = [];
+        }
+
+
         $productos = $productosModelo -> getProductos();
-        $idProductosCarrito = $carritoModelo -> getIdsProductosCarrito($idUsuario);
         require "Vista/productosUser.php";
     }
 

@@ -31,6 +31,7 @@
     <nav>
         <ul>
             <li><a href="#">Productos</a></li>
+            <li><a href="./Controlador/ProductosControlador.php">Mi Cuenta</a></li>
             <li><a href="./Controlador/CarritoControlador.php">Carrito</a></li>
         </ul>
     </nav>
@@ -75,6 +76,7 @@
                     type: "POST",
                     success: function () {
                         console.log("Se ha realizado");
+                        alert("El producto se ha añadido al carrito!");
                     },
                     error: function () {
                         console.log("Error");

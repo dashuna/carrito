@@ -5,11 +5,18 @@ $carrito = new CarritoModelo();
 //añadir por post un producto dependiendo del usuario
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if($_POST["action"] == "crear") {
-            session_start();
-            $idUsuario = $_SESSION["id"];
-            $idProducto = $_POST["idProducto"];
-            $cantidad = $_POST["cantidad"];
-            $carrito -> saveCarrito($idUsuario, $idProducto, $cantidad);
+            //inserta el producto en el carrito
+            //Necesita solicitar login
+            if (isset($_SESSION["rol"])) {
+                session_start();
+                $idUsuario = $_SESSION["id"];
+                $idProducto = $_POST["idProducto"];
+                $cantidad = $_POST["cantidad"];
+                $carrito -> saveCarrito($idUsuario, $idProducto, $cantidad);
+            } else {
+                require "Controlador/UsuarioControlador.php";
+            }
+
         } else if ($_POST["action"] == "borrar") {
             $id = $_POST["idCarrito"];
             $carrito -> deleteCarrito($id);
