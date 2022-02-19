@@ -9,12 +9,13 @@ class FacturaModelo {
     }
 
     public function saveDatosFacturacion($nombreFacturacion, $esEmpresa, $numDocumento, $tarjeta) {
-        $sql = "insert into factura (nombre_facturacion, es_empresa, num_documento, tarjeta)
+        $sql = "insert into facturas (nombre_facturacion, es_empresa, num_documento, tarjeta)
                 values (:nombre_facturacion, :es_empresa, :num_documento, :tarjeta)";
         $consulta = $this -> conexion -> prepare($sql);
         $consulta -> execute(array(":nombre_facturacion" => $nombreFacturacion,
             ":es_empresa" => $esEmpresa,
             ":num_documento" => $numDocumento,
             ":tarjeta" => $tarjeta));
+        return $this -> conexion -> lastInsertId(); //devuelve el ultimo id insertado
     }
 }

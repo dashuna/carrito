@@ -49,6 +49,12 @@ class CarritoModelo {
         $consulta -> execute(array(":idCarrito" => $idCarrito, ":cantidad" => $cantidad));
     }
 
+    public function vaciarCarrito ($idUsuario) {
+        $sql = "delete from carrito where id_usuario = :id_usuario";
+        $consulta = $this -> conexion -> prepare($sql);
+        $consulta -> execute(array(":id_usuario"=>$idUsuario));
+    }
+
 }
 
 ?>

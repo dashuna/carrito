@@ -42,7 +42,10 @@
             <h3 class="subtotal" >SUBTOTAL: <span id="subtotal"><?php echo $totalCompra ?></span> €</h3>
         </div>
         <div class="terminar">
-            <input type="submit" name="termianar" class="inputTerminar" value="Terminar Pedido">
+            <form method="get">
+                <button type="submit">Terminar Pedido</button>
+                <input type="hidden" name="pago-pedido">
+            </form>
         </div>
     </div>
 

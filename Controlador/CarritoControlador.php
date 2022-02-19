@@ -37,7 +37,7 @@ $carrito = new CarritoModelo();
             echo "El carrito está vacío.";
         } else {
             $idUsuario = $_SESSION["id"];
-            $lista = $carrito->getCarrito($idUsuario);
+            $lista = $carrito -> getCarrito($idUsuario);
             //var_dump($lista[0]);
             $totalCompra = getTotalCarrito($lista);
             if (isset($_GET["total-carrito"])) {

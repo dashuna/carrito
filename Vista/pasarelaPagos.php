@@ -9,15 +9,25 @@
     <style>
         .datos {
             display: flex;
+            margin: 30px;
         }
-        .datoss {
+        .datosCompra {
             display: flex;
+            margin: 0 40px;
+            padding: 20px;
+        }
+        .datosPago {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            margin: 0 40px;
+            padding: 20px;
         }
     </style>
 </head>
 <body>
 <div class="datos">
-    <div class="datos">
+    <div class="datosCompra">
         <div class="">
             <h3>Datos de la compra</h3>
             <p>Importe:
@@ -31,15 +41,16 @@
             </p>
         </div>
     </div>
-
-    <div class="datoss">
+    <div class="datosPago">
         <div>
+        <form method="POST" action="../Controlador/FacturaControlador.php">
             <h3>Dotos de facturación</h3>
             <p>Nombre facturación:
                 <input type="text" name="nombreFact">
             </p>
             <p>Es empresa
-                <input type="checkbox">
+                <input type="radio" name="check" checked value="0">No
+                <input type="radio" name="check" value="1">Si
             </p>
             <p>Documento de identidad:
                 <input type="text" name="dni">
@@ -57,11 +68,12 @@
            <p>CVC2:
                <input type="number" name="cvc2" style="width:50px">
            </p>
-       </div>
+        </div>
     </div>
-        <button type="submit" name="pagar">Pagar</button>
-        <button name="cancelar"><a href ="index.php" style="text-decoration: none"/>Cancelar</button>
 </div>
+    <button type="submit" name="pagar">Pagar</button>
+    <button name="cancelar"><a href ="index.php" style="text-decoration: none"/>Cancelar</button>
+</form>
 
 </body>
 </html>

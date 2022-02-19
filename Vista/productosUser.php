@@ -6,7 +6,8 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Productos</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
+    <?php include 'include_js.php' ?>
     <style>
         #imagen {
             width: 200px;
@@ -28,13 +29,15 @@
     </style>
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="#">Productos</a></li>
-            <li><a href="./Controlador/ProductosControlador.php">Mi Cuenta</a></li>
-            <li><a href="./Controlador/CarritoControlador.php">Carrito</a></li>
-        </ul>
-    </nav>
+<?php include 'menu.php' ?>
+
+<!--    <nav>-->
+<!--        <ul>-->
+<!--            <li><a href="#">Productos</a></li>-->
+<!--<!--            <li><a href="./Controlador/UsuarioControlador.php">Mi Cuenta</a></li>-->-->
+<!--            <li><a href="./Controlador/CarritoControlador.php">Carrito</a></li>-->
+<!--        </ul>-->
+<!--    </nav>-->
 
 <div class="principal">
     <?php foreach ($productos as $registro) {
