@@ -24,7 +24,7 @@ $usuario = $_SESSION["usuario"] ?? null;
                 Productos
             </a>
             <?php if($usuario != null) { ?>
-            <a href="Controlador/CarritoControlador.php" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
+            <a href="/PracticaCarritoDLS/Controlador/CarritoControlador.php" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
                 Carrito
             </a>
             <?php } ?>

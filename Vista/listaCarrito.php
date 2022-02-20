@@ -10,30 +10,79 @@
 </head>
 <body>
 <?php include 'menu.php' ?>
-    <div class="articulos">
+<div class="container p-8 mx-auto mt-12">
+    <div class="w-full overflow-x-auto">
+        <div class="my-2">
+            <h3 class="text-xl font-bold tracking-wider">Lista de la compra</h3>
+        </div>
+        <table class="w-full shadow-inner">
+            <thead>
+            <tr class="bg-gray-100">
+                <th class="px-6 py-3 font-bold whitespace-nowrap">Imagen</th>
+                <th class="px-6 py-3 font-bold whitespace-nowrap">Producto</th>
+                <th class="px-6 py-3 font-bold whitespace-nowrap">Unidades</th>
+                <th class="px-6 py-3 font-bold whitespace-nowrap">Precio</th>
+                <th class="px-6 py-3 font-bold whitespace-nowrap">Borrar</th>
+            </tr>
+            </thead>
+            <tbody>
         <?php
         foreach ($lista as $registro) { ?>
-        <div id="fila_<?php echo $registro["idCarrito"]?>" class="fila">
-            <div><img src="../Vista/imagenes/<?php echo $registro["imagen"] ?>"></div>
-            <div class="detalles">
-                <h3 id="nombre_<?php echo $registro["idCarrito"]?>"><?php echo $registro["nombre"]?></h3>
-                <p class="descripcion"><?php echo $registro["descripcion"]?></p>
-                <input id="cantidad_<?php echo $registro["idCarrito"]?>" type="number" name="cantidad"
+
+        <tr id="fila_<?php echo $registro["idCarrito"]?>" class="fila">
+            <td>
+                <div class="flex justify-center">
+                    <img
+                            src="../Vista/imagenes/<?php echo $registro["imagen"] ?>"
+                            class="object-cover h-28 w-28 rounded-2xl"
+                    />
+                </div>
+            </td>
+            <td class="p-4 px-6 text-center whitespace-nowrap">
+                <div class="flex flex-col items-center justify-center">
+                    <h3 id="nombre_<?php echo $registro["idCarrito"]?>"><?php echo $registro["nombre"]?></h3>
+                </div>
+            </td>
+            <td class="p-4 px-6 text-center whitespace-nowrap">
+                <div>
+                    <input id="cantidad_<?php echo $registro["idCarrito"]?>" type="number" name="cantidad"
                            onchange="actualizarCantidad(<?php echo $registro["idCarrito"]?>)"
-                           value="<?php echo $registro["cantidad"]?>" class="cantidad" title="La cantidad se actualiza automáticamente"
+                           value="<?php echo $registro["cantidad"]?>" class="cantidad w-12 text-center bg-gray-100 outline-none" title="La cantidad se actualiza automáticamente"
                            max="<?php echo $registro["stock"]?>">
+                </div>
+            </td>
+            <td class="p-4 px-6 text-center whitespace-nowrap">
                 <input type="hidden" id="stock_<?php echo $registro["idCarrito"]?>" value="<?php echo $registro["stock"]?>" class="stock">
-            </div>
-            <div class="precio">
-                <h3><span id="precio_<?php echo $registro["idCarrito"]?>"><?php echo $registro["precio"]?></span> €</h3>
+                <span id="precio_<?php echo $registro["idCarrito"]?>"><?php echo $registro["precio"]?></span> €</td>
+            <td class="p-4 px-6 text-center whitespace-nowrap">
                 <form class="form">
-                    <button type="submit" class="borrar">Borrar</button>
-                    <input type="hidden" name="idCarrito" value="<?php echo $registro["idCarrito"]?>">
-                    <input type="hidden" name="action" value="borrar">
+                <input type="hidden" name="idCarrito" value="<?php echo $registro["idCarrito"]?>">
+                <input type="hidden" name="action" value="borrar">
+                <button class="borrar" type="submit" >
+                    <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="w-6 h-6 text-red-400"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                    >
+                        <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                        />
+                    </svg>
+                </button>
                 </form>
-            </div>
-        </div>
+            </td>
         <?php } ?>
+        </tr>
+
+            </tbody>
+        </table>
+
+
         <div class="total">
             <h3 class="subtotal" >SUBTOTAL: <span id="subtotal"><?php echo $totalCompra ?></span> €</h3>
         </div>
