@@ -51,6 +51,6 @@ $productosModelo = new ProductosModelo();
         }
 
         $carrito -> vaciarCarrito($idUsuario);
-        require "PedidoControlador.php";
+        header("location: PedidoControlador.php");
     }
 ?>

@@ -33,7 +33,10 @@ $usuario = $_SESSION["usuario"] ?? null;
             <?php if($usuario == null) { ?>
                 <a href="Controlador/UsuarioControlador.php" class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">Login</a>
             <?php } else { ?>
-                <span class="font-semibold text-xl tracking-tight">Bienvenido <?php echo $usuario ?></span>
+                <span class="font-semibold text-xl tracking-tight">Bienvenid@ <?php echo $usuario ?></span>
+                <a href="/PracticaCarritoDLS/Controlador/cerrarSesion.php" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
+                    <img src="Vista/imagenes/cerrar-sesion.png">
+                </a>
             <?php } ?>
         </div>
     </div>
