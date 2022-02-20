@@ -9,12 +9,7 @@
     <?php include 'include_js.php' ?>
 </head>
 <body>
-<nav>
-    <ul>
-        <li><a href="..">Productos</a></li>
-        <li><a href="#">Carrito</a></li>
-    </ul>
-</nav>
+<?php include 'menu.php' ?>
     <div class="articulos">
         <?php
         foreach ($lista as $registro) { ?>
