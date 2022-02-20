@@ -82,18 +82,39 @@
             </tbody>
         </table>
 
-
-        <div class="total">
-            <h3 class="subtotal" >SUBTOTAL: <span id="subtotal"><?php echo $totalCompra ?></span> €</h3>
+        <div class="mt-4">
+            <div class="py-4 rounded-md shadow">
+                <div
+                        class="
+                flex
+                items-center
+                justify-between
+                px-4
+                py-2
+                mt-3
+                border-t-2
+              "
+                >
+                    <span class="text-xl font-bold">Total</span>
+                    <span id="subtotal" class="text-2xl font-bold"><?php echo $totalCompra ?></span>
+                </div>
+            </div>
         </div>
-        <div class="terminar">
+        <div class="mt-4">
             <form method="get">
-                <button type="submit">Terminar Pedido</button>
+                <button class="
+                  w-full
+                  py-2
+                  text-center text-white
+                  bg-blue-500
+                  rounded-md
+                  shadow
+                  hover:bg-blue-600
+                  " type="submit"> Terminar Pedido
+                </button>
                 <input type="hidden" name="pago-pedido">
             </form>
         </div>
-    </div>
-
     <script>
         $(function(){
             $(".form").on("submit", function (event) {
@@ -160,7 +181,7 @@
                 url: "../Controlador/CarritoControlador.php?total-carrito",
                 type: "GET",
                 success: function (response) {
-                    $("#subtotal").html(response);
+                    $("#subtotal").html(response + "€");
                 },
                 error: function () {
                     alert("Error al actualizar total carrito");
