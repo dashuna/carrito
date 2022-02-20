@@ -31,14 +31,6 @@
 <body>
 <?php include 'menu.php' ?>
 
-<!--    <nav>-->
-<!--        <ul>-->
-<!--            <li><a href="#">Productos</a></li>-->
-<!--<!--            <li><a href="./Controlador/UsuarioControlador.php">Mi Cuenta</a></li>-->-->
-<!--            <li><a href="./Controlador/CarritoControlador.php">Carrito</a></li>-->
-<!--        </ul>-->
-<!--    </nav>-->
-
 <div class="principal">
     <?php foreach ($productos as $registro) {
         if (!in_array($registro["id"], $idProductosCarrito)) { ?>
@@ -62,10 +54,11 @@
         <!--Enlace, descripción y observaciones ocultas-->
 
     </div>
+
+
     <?php }
         } ?>
 </div>
-
     <script>
         $(function(){
             $(".formulario").on("submit", function (event) {

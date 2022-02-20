@@ -19,7 +19,7 @@ class CarritoModelo {
     //obtener los productos del carrito de un usuario
     public function getCarrito($idUsuario) {
         $sql = "select car.id as 'idCarrito', prod.id as 'idProducto', 
-                prod.nombre, prod.descripcion, prod.imagen, prod.precio, car.cantidad
+                prod.nombre, prod.descripcion, prod.imagen, prod.precio, prod.stock, car.cantidad
                 from carrito car 
                 left join productos prod 
                 on car.id_producto = prod.id 

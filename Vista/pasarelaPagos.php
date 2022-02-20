@@ -31,7 +31,7 @@
         <div class="">
             <h3>Datos de la compra</h3>
             <p>Importe:
-                <span><?php ?></span>
+                <span><?php $totalPedido?></span>
             </p>
             <p>Comercio:
                 <span>Práctica Carrito DLS</span>
@@ -74,6 +74,7 @@
     <button type="submit" name="pagar">Pagar</button>
     <button name="cancelar"><a href ="index.php" style="text-decoration: none"/>Cancelar</button>
 </form>
+
 
 </body>
 </html>

@@ -6,8 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-    <link rel="stylesheet" type="text/css" href="../Vista/css/estilosCarrito.css">
+    <?php include 'include_js.php' ?>
 </head>
 <body>
 <nav>
@@ -22,11 +21,13 @@
         <div id="fila_<?php echo $registro["idCarrito"]?>" class="fila">
             <div><img src="../Vista/imagenes/<?php echo $registro["imagen"] ?>"></div>
             <div class="detalles">
-                <h3 class="nombre"><?php echo $registro["nombre"]?></h3>
+                <h3 id="nombre_<?php echo $registro["idCarrito"]?>"><?php echo $registro["nombre"]?></h3>
                 <p class="descripcion"><?php echo $registro["descripcion"]?></p>
                 <input id="cantidad_<?php echo $registro["idCarrito"]?>" type="number" name="cantidad"
                            onchange="actualizarCantidad(<?php echo $registro["idCarrito"]?>)"
-                           value="<?php echo $registro["cantidad"]?>" class="cantidad" title="La cantidad se actualiza automáticamente">
+                           value="<?php echo $registro["cantidad"]?>" class="cantidad" title="La cantidad se actualiza automáticamente"
+                           max="<?php echo $registro["stock"]?>">
+                <input type="hidden" id="stock_<?php echo $registro["idCarrito"]?>" value="<?php echo $registro["stock"]?>" class="stock">
             </div>
             <div class="precio">
                 <h3><span id="precio_<?php echo $registro["idCarrito"]?>"><?php echo $registro["precio"]?></span> €</h3>
@@ -66,7 +67,7 @@
                     success: function (response) {
                         //response nos devuelve el idCarrito si tod ha ido correctamente
                         // $("#fila_"+formulario[0].idCarrito.value).remove();
-                        $("#fila_"+response).remove();
+                        $("#fila_" + response).remove();
                         obtenerTotalCarrito();
                     },
                     error: function () {
@@ -74,11 +75,13 @@
                     }
                 });
             });
+            $(".cantidad").change(); //simula que se ha cambiado ese input
         });
 
         function actualizarCantidad(idCarrito) {
             //Seria igual a $(this).val() pero solo en el caso que la funcion la llamase el input cantidad
             let cantidad = $("#cantidad_" + idCarrito).val();
+            let nombre = $("#nombre_"+idCarrito).html();
             $.ajax({
                 data: {
                     cantidad: cantidad,
@@ -87,6 +90,17 @@
                 },
                 url: "../Controlador/CarritoControlador.php",
                 type: "POST",
+                beforeSend: function() {
+                    let stock = $("#stock_" + idCarrito).val();
+                    console.log(stock);
+                    if (parseInt(cantidad) > parseInt(stock)) {
+                        alert("El stock del producto: " + nombre + " es insuficiente! \nEl valor se actualizará al máximo permitido.");
+                        $("#cantidad_" + idCarrito).val(stock);
+                        return false;
+                    } else {
+                        return true;
+                    }
+                },
                 success: function () {
                     console.log("Exito");
                     obtenerTotalCarrito();

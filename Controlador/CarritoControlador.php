@@ -2,6 +2,7 @@
 require_once "../Modelo/CarritoModelo.php";
 
 $carrito = new CarritoModelo();
+
 //añadir por post un producto dependiendo del usuario
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if($_POST["action"] == "crear") {
@@ -51,6 +52,8 @@ $carrito = new CarritoModelo();
             }
         }
     }
+
+    //sacar mensaje de error cuando la cantidad es superior al stock
 
     function getTotalCarrito(array $listaCarrito) {
         $totalCompra = 0;
