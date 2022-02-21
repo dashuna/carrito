@@ -32,12 +32,5 @@ class UsuarioModelo extends Conexion {
         $resultado = $this -> conexion -> prepare($consultaInsertar);
         $resultado -> execute(array(":usuario" => $usuario, ":nombre" => $nombre, ":apellidos" => $apellidos,
             ":email" => $email, ":telefono" => $telefono, ":password" => $password, ":rol" => $rol));
-        if (!$resultado) {
-            echo "Error al registrarse. <br>";
-        } else {
-            echo "El usuario se ha registrado con éxito. <br>";
-            header("location: index.php");
-        }
-        $resultado -> closeCursor();
     }
 }
