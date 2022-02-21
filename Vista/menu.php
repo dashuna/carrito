@@ -3,8 +3,8 @@
 if (!isset($_SESSION)){
     session_start();
 }
+$rol = $_SESSION["rol"] ?? null;
 $usuario = $_SESSION["usuario"] ?? null;
-
 ?>
 
 
@@ -19,19 +19,27 @@ $usuario = $_SESSION["usuario"] ?? null;
         </button>
     </div>
     <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+
         <div class="text-sm lg:flex-grow">
+            <!-- Si es admin mostramos panel de administracion, si no, Productos -->
             <a href="/PracticaCarritoDLS" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
-                Productos
+                <?php if($rol == 1) { ?>
+                    Panel de administración
+                <?php } else {?>
+                    Productos
+                <?php } ?>
             </a>
-            <?php if($usuario != null) { ?>
+            <?php if($usuario != null && $rol != 1) { ?>
             <a href="/PracticaCarritoDLS/Controlador/CarritoControlador.php" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
                 Carrito
             </a>
             <?php } ?>
         </div>
+
+        <!-- Login/Logout -->
         <div>
             <?php if($usuario == null) { ?>
-                <a href="Controlador/UsuarioControlador.php" class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">Login</a>
+                <a href="/PracticaCarritoDLS/Controlador/UsuarioControlador.php" class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">Login</a>
             <?php } else { ?>
                 <span class="font-semibold text-xl tracking-tight">Bienvenid@ <?php echo $usuario ?></span>
                 <a href="/PracticaCarritoDLS/Controlador/cerrarSesion.php" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">

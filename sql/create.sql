@@ -1,3 +1,5 @@
+USE tiendaOnline;
+
 create table if not exists categorias
 (
     id     int auto_increment

@@ -77,13 +77,14 @@ class ProductosModelo {
         $consulta -> execute(array(":id" => $id));
     }
 //admin
-    public function actualizarProducto($idMarca, $idCategoria, $nombre, $descripcion, $precio, $stock, $imagen) {
+    public function actualizarProducto($idMarca, $idCategoria, $nombre, $descripcion, $precio, $stock, $imagen, $idProducto) {
         $sqlEditar = "update productos set id_marca = :idMarca, id_categoria = :idCategoria, 
                       nombre = :nombre, descripcion = :descripcion, precio = :precio, stock = :stock, imagen = :imagen 
                       where id = :idProducto";
         $consulta = $this -> conexion -> prepare($sqlEditar);
         $consulta -> execute(array(":idMarca" => $idMarca,":idCategoria" => $idCategoria, ":nombre" => $nombre,
-                                    ":descripcion" => $descripcion, ":precio" => $precio, ":stock" => $stock, ":imagen" => $imagen));
+                                    ":descripcion" => $descripcion, ":precio" => $precio, ":stock" => $stock, ":imagen" => $imagen,
+                                     ":idProducto" => $idProducto));
     }
 
 

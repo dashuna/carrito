@@ -42,8 +42,7 @@ session_start();
             || empty($_POST['nombre'])
             || empty($_POST['descripcion'])
             || empty($_POST['precio'])
-            || empty($_POST['stock'])
-            || empty($_POST['imagen'])){
+            || empty($_POST['stock'])){
             echo "<script> alert('Faltan datos!'); </script>";
         } else {
             $idMarca = $_POST['idMarca'];
@@ -53,9 +52,9 @@ session_start();
             $descripcion = $_POST['descripcion'];
             $precio = $_POST['precio'];
             $stock = $_POST['stock'];
-            $imagen = $_POST['imagen'];
+            $imagen = $_POST['imagen'] ?? null;
 
-            $productosModelo -> actualizarProducto($idMarca, $idCategoria, $nombre, $descripcion, $precio, $stock, $imagen);
+            $productosModelo -> actualizarProducto($idMarca, $idCategoria, $nombre, $descripcion, $precio, $stock, $imagen, $idProducto);
             echo "<script> alert('Los datos se han actualizado con éxito!'); </script>";
             //header("location:index.php");
         }
