@@ -8,25 +8,22 @@
     <title>Productos</title>
 
     <?php include 'include_js.php' ?>
-    <style>
-        #imagen {
-            width: 200px;
-            height: 200px;
-        }
-        .principal {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-evenly;
-        }
-        a {
-            text-decoration: none;
-        }
-        .articulo {
-            width: 250px;
-            padding: 20px;
-            text-align: center;
-        }
-    </style>
+<!--    <style>-->
+<!--        -->
+<!--        .principal {-->
+<!--            display: flex;-->
+<!--            flex-wrap: wrap;-->
+<!--            justify-content: space-evenly;-->
+<!--        }-->
+<!--        a {-->
+<!--            text-decoration: none;-->
+<!--        }-->
+<!--        .articulo {-->
+<!--            width: 250px;-->
+<!--            padding: 20px;-->
+<!--            text-align: center;-->
+<!--        }-->
+<!--    </style>-->
 </head>
 <body>
 <?php include 'menu.php' ?>
@@ -34,9 +31,9 @@
     <div class="px-10 py-20 bg-gray-100 grid gap-10 lg:grid-cols-3 xl:grid-cols-4 sm:grid-cols-2">
     <?php foreach ($productos as $registro) {
         if (!in_array($registro["id"], $idProductosCarrito)) { ?>
-    <div class="max-w-xs rounded-md overflow-hidden shadow-lg hover:scale-105 transition duration-500 cursor-pointer" id="articulo_<?php echo $registro["id"] ?>">
+    <div class="max-w-xs rounded-md overflow-hidden shadow-lg hover:scale-105 transition duration-500 cursor-pointer w-70" id="articulo_<?php echo $registro["id"] ?>">
         <div>
-            <img id="imagen" src="Vista/imagenes/<?php echo $registro["imagen"] ?>" alt="<?php echo $registro["imagen"] ?>">
+            <img object-cover id="imagen" src="Vista/imagenes/<?php echo $registro["imagen"] ?>" alt="<?php echo $registro["imagen"] ?>">
         </div>
 
         <form method="POST" class="formulario">

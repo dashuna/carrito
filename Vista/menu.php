@@ -35,7 +35,7 @@ $usuario = $_SESSION["usuario"] ?? null;
             <?php } else { ?>
                 <span class="font-semibold text-xl tracking-tight">Bienvenid@ <?php echo $usuario ?></span>
                 <a href="/PracticaCarritoDLS/Controlador/cerrarSesion.php" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
-                    <img src="Vista/imagenes/cerrar-sesion.png">
+                    <img src="Vista/imagenes/cerrar-sesion.png" class="h-8 w-8" >
                 </a>
             <?php } ?>
         </div>
